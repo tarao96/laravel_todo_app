@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('task.index');
+Route::post('/create', [App\Http\Controllers\HomeController::class, 'store'])->name('task.create');
+Route::get('/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('task.show'); // 追加
+Route::get('/edit/{id}', [App\Http\Controllers\HomeController::class, 'edit'])->name('task.edit');
+Route::post('/update/{id}', [App\Http\Controllers\HomeController::class, 'update'])->name('task.update');
+Route::post('/delete/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('task.delete');
